@@ -26,9 +26,7 @@ module.exports = {
         try {
           const registeredUser = await User.register(new User({
             username: req.body.username,
-            imageUrl: imgUrl,
           }), req.body.password);
-          const token = await jwt.sign({ user: registeredUser }, auth.confirmationKey);
           return res.status(200).send('Successfully registered');
         } catch (err) {
           return res.status(500).send(err.message);
