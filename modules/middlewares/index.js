@@ -1,6 +1,6 @@
 const jwt = require('jwt-then');
 
-const User = require(__base + 'models/user.js');
+const User = require('../../models/user.js');
 // to gain acess send Authorization header in the format Bearer <token>
 
 module.exports = async (req, res, next) => {
