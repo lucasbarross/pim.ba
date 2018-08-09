@@ -20,7 +20,10 @@ module.exports = {
                 name: req.body.name,
                 description: req.body.description,
                 type: req.body.type,
-                tasks: req.body.tasks.map(task => ({ ...task, _id: mongoose.Types.Schema.ObjectId() })), 
+                tasks: req.body.tasks.map(task => ({ ...task, _id: mongoose.Types.Schema.ObjectId() })),
+                author: req.loggedUser,
+                categories: req.body.categories,
+                links: req.body.links,
             }
             const createdProjet = await Project.create(data);
             return res.json(createdProjet);
