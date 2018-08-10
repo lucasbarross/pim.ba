@@ -2,6 +2,8 @@ const User = require("../models/user"),
       jwt = require("jwt-then");
       passport = require("passport");
 
+const mongoose = require('mongoose');
+
 module.exports = {
 
     loginUser: async (req, res, next) => passport.authenticate('local', async (err, user) => {

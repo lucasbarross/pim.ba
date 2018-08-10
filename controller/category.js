@@ -1,10 +1,12 @@
 const Category = require("../models/category");
+const mongoose = require('mongoose');
+
 
 module.exports = {
 
     getCategories: async (req, res) => {
         try {
-            const foundCategories = await Project.find();
+            const foundCategories = await Category.find();
             return res.json(foundCategories);
         } catch (err) {
             console.log(err);
