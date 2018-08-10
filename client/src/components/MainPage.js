@@ -53,13 +53,14 @@ class MainPage extends Component {
         // let project = await api.getProject(e.target.dataset.id, this.props.auth);
         let call = await api.getUserProject(project._id, this.props.auth.getToken())
         let res = call.data;
+        console.log(project);
         this.setState({ userProject: res[0] , project: project, showPage: { projects: false} });
     }
 
   render() {
     return (
         <div>
-            <Navbar/>
+            <Navbar auth = {new AuthService()}/>
             <div className="projectsPage">
                 { this.state.showPage.projects ? 
                 <ProjectsPage auth={this.props.auth} openProject={this.openProject}/> : 

@@ -20,13 +20,16 @@ function getProject(id) {
     return axios.get(`/projects/${id}`);
 }
 
-<<<<<<< HEAD
 function getUserProjects(token) {
-    return axios.get(`/userProjects`, {
-=======
+    return axios.get('/userProjects', {
+        headers: {
+            Authorization: `Bearar ${token}`
+        }
+    })
+}
+
 function getUserProject(id, token) {
     return axios.get(`/projects/${id}/userProjects/user`, {
->>>>>>> 3f3a9862dd171a352f0d63cc9f93f3a83e642954
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -75,7 +78,6 @@ function updateTasks(token , idUserProject, data) {
 }
 
 
-
 export {
     getProjects,
     me,
@@ -87,5 +89,6 @@ export {
     getDoneUserProjects,
     updateTasks,
     getCategories,
+    getUserProjects,
 }
 
