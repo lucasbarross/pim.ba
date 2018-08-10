@@ -13,8 +13,9 @@ class ShowProjectPage extends Component {
     }
   }
 
-    componentDidMount = () => {
-       this.setState({created: this.props.userProject !== undefined });
+  componentDidMount = () => {
+      const formatTasks = this.props.project.tasks;
+      this.setState({created: this.props.userProject !== undefined });
     }
 
 
@@ -44,7 +45,6 @@ class ShowProjectPage extends Component {
         }
         tasks = formatTasks.map(task => <p> <div><Checkbox onChange = {(e) => this.check(task, e)} style = {{fontSize: '30px', padding: '10px'}} label = {task.text} defaultChecked = {task.done} /> </div> {task.description} </p>);
     }
-
     let projectName = this.props.project.name ? this.props.project.name : '';
     let projectDescription = this.props.project.description ? this.props.project.description: '';
     return (
@@ -53,7 +53,6 @@ class ShowProjectPage extends Component {
                 {projectName.toUpperCase()}
             </p>
             <p className="description">{projectDescription}</p>
-            { tasks }
         </div>
     );
   }

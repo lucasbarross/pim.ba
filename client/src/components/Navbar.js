@@ -5,20 +5,25 @@ import Chips, { Chip } from 'react-chips';
 import * as api from '../util/api.js'
 
 export default class MenuExampleSecondary extends Component {
-  state = { activeItem: 'home', checkboxes: [],  chips: [] }
+  state = { activeItem: 'home', checkboxes: [],  chips: [], openModal: false }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleSubmit = async (e) => {
+    this.setState({ openModal: false })
+
     let checkboxes = [];
     Object.keys(this.state.checkboxes).forEach((key) => { 
       checkboxes.push(this.state.checkboxes[key].title); 
     });
 
-    let categories = this.state.chips.map((chip) => this.state[chip])
+    let categories = this.state.chips.map((chip) => this.state[chip]);
     await api.createProject(this.props.auth.getToken(), { name: this.state.name, description: this.state.description, type:1, links: this.state.links, categories: categories, tasks: checkboxes})
   }
-
+  openModal = (e) => {
+    console.log("oi")
+    this.setState({ openModal: true })
+  }
   handleFormChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }
@@ -49,7 +54,7 @@ export default class MenuExampleSecondary extends Component {
 
         <Menu.Item
           active={activeItem === 'home'}
-          onClick={this.handleItemClick}>
+          onClick={this.handleItemClick} href="/">
           <img id="logo" src="https://i.imgur.com/ysaO2wd.png" />
         </Menu.Item>
 
@@ -62,9 +67,9 @@ export default class MenuExampleSecondary extends Component {
 
         <Menu.Menu position='right'>
 
-          <Modal trigger={<Menu.Item id="button"
+          <Modal open={this.state.openModal} trigger={<Menu.Item id="button"
             name='contribua!'
-            onClick={this.handleItemClick}
+            onClick={this.openModal}
           />}>
             <Modal.Header>Criação de projeto</Modal.Header>
 

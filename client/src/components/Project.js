@@ -18,10 +18,10 @@ class Project extends Component {
     
     render() {
     return (
-        <div id={this.props.project._id} className="project container column">
+        <a onClick={this.props.openProject} data-project={this.props.project._id} className="project container column">
             <h2> { this.props.project.name } </h2>
             <p> { this.props.project.description } </p>
-        </div>
+        </a>
     );
   }
 }
