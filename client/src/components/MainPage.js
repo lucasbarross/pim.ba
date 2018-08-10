@@ -26,34 +26,28 @@ class MainPage extends Component {
   }
 
   componentDidMount = async() => {
-    let project = {
-        "_id": "5b6ccce8064c8218c8f98d5f",
-        "categories": [],
-        "links": [],
-        "name": "Projeto Top",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien massa, sollicitudin aliquet nibh eget, euismod ultrices felis. Sed molestie mattis quam nec sodales. Quisque laoreet urna quis eros tristique tristique ut in dui. Pellentesque sit amet posuere felis, vel sodales nisi.",
-        "type": 1,
-        "tasks": [
-            {
-                "text": "bbbb",
-                "_id": "5b6ccce8064c8218c8f98d5d",
-                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien. "
-            },
-            {
-                "text": "aaaa",
-                "_id": "5b6ccce8064c8218c8f98d5e",
-                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien. "
-            }
-        ],
-        "author": "5b6cc7c3e3e9d51b14ef1c8a",
-      }
-      this.openProject(project);
-    }
-
-
-    createUserProject = async () => {
-        this.state.userProject = await api.createUserProject(this.props.auth.getToken(), this.state.project._id)
-    }
+      this.setState({showPage: { projects: true }})
+    // let project = {
+    //     "_id": "5b6ccce8064c8218c8f98d5f",
+    //     "categories": [],
+    //     "links": [],
+    //     "name": "Projeto Top",
+    //     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien massa, sollicitudin aliquet nibh eget, euismod ultrices felis. Sed molestie mattis quam nec sodales. Quisque laoreet urna quis eros tristique tristique ut in dui. Pellentesque sit amet posuere felis, vel sodales nisi.",
+    //     "type": 1,
+    //     "tasks": [
+    //         {
+    //             "text": "bbbb",
+    //             "_id": "5b6ccce8064c8218c8f98d5d"
+    //         },
+    //         {
+    //             "text": "aaaa",
+    //             "_id": "5b6ccce8064c8218c8f98d5e"
+    //         }
+    //     ],
+    //     "author": "5b6cc7c3e3e9d51b14ef1c8a",
+    //   }
+    //   this.openProject(project);
+ }
 
     openProject = async (e) => {
         let project = await api.getProject(e.target.dataset.id, this.props.auth);
