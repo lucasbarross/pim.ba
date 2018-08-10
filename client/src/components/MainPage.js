@@ -17,7 +17,6 @@ class MainPage extends Component {
 
         project: {
             categories: [],
-            tasks: [],
             links: []
         },
 
@@ -37,38 +36,45 @@ class MainPage extends Component {
         "tasks": [
             {
                 "text": "bbbb",
-                "_id": "5b6ccce8064c8218c8f98d5d"
+                "_id": "5b6ccce8064c8218c8f98d5d",
+                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien. "
             },
             {
                 "text": "aaaa",
-                "_id": "5b6ccce8064c8218c8f98d5e"
+                "_id": "5b6ccce8064c8218c8f98d5e",
+                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien. "
             }
         ],
         "author": "5b6cc7c3e3e9d51b14ef1c8a",
       }
       this.openProject(project);
- }
+    }
+
+
+    createUserProject = async () => {
+        this.state.userProject = await api.createUserProject(this.props.auth.getToken(), this.state.project._id)
+    }
 
     openProject = async (project) =>{
         // let project = await api.getProject(e.target.dataset.id, this.props.auth);
         let call = await api.getUserProject(project._id, this.props.auth.getToken())
         let res = call.data;
-        console.log(project);
+        if(res[0]) {
+            project.tasks = project.tasks.map(t => ({ ...t, done: res[0].doneTasks.find(dt => dt._id === t._id) })); 
+        } else {
+            project.tasks = project.tasks.map(t => ({ ...t, done: false})); 
+        }
         this.setState({ userProject: res[0] , project: project, showPage: { projects: false} });
     }
 
   render() {
     return (
         <div>
-<<<<<<< HEAD
-            <Navbar auth = {new AuthService()}/>
-=======
             <Navbar auth = {this.props.auth}/>
->>>>>>> 4ebf2a50a603873f626a2391ca052efadf0131ef
             <div className="projectsPage">
                 { this.state.showPage.projects ? 
                 <ProjectsPage auth={this.props.auth} openProject={this.openProject}/> : 
-                <ShowProjectPage auth={this.props.auth} project={this.state.project} userProject={this.state.userProject}/> }
+                <ShowProjectPage createUserProject = {this.createUserProject} auth={this.props.auth} project={this.state.project} userProject={this.state.userProject}/> }
             </div>
         </div>
     );
