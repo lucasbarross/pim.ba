@@ -35,7 +35,9 @@ class MainPage extends Component {
           <div className="container wrap row">
             {projects}
           </div>
+          
         </div>
+        
     );
   }
 }
