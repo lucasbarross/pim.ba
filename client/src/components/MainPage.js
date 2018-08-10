@@ -55,7 +55,6 @@ class MainPage extends Component {
         let project = await api.getProject(id);
         let call = await api.getUserProject(id, this.props.auth.getToken())
         let res = call.data;
-        console.log("WHHHHHHHHHHAT")
         this.setState({userProject: res[0], project: project.data, showPage: { projects: false} });
     }
 
@@ -66,7 +65,7 @@ class MainPage extends Component {
             <div className="projectsPage">
                 { this.state.showPage.projects ? 
                 <ProjectsPage auth={this.props.auth} openProject={this.openProject}/> : 
-                <ShowProjectPage createUserProject = {this.createUserProject} auth={this.props.auth} project={this.state.project} userProject={this.state.userProject}/> }
+                <ShowProjectPage auth={this.props.auth} createUserProject = {this.createUserProject} project={this.state.project} userProject={this.state.userProject}/> }
             </div>
         </div>
     );

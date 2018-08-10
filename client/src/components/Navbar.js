@@ -22,8 +22,13 @@ export default class MenuExampleSecondary extends Component {
   }
   openModal = (e) => {
     console.log("oi")
-    this.setState({ openModal: true })
+    this.setState({ openModal: true });
   }
+
+  closeModal = (e) => {
+    this.setState({openModal: false});
+  }
+
   handleFormChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }
@@ -109,7 +114,9 @@ export default class MenuExampleSecondary extends Component {
             </Modal.Content>
 
             <Modal.Actions>
-
+            <Button onClick={this.closeModal} color='red'>
+              <Icon name='remove' /> Cancelar
+            </Button>
               <Button secondary id="button-proceed" onClick={this.handleSubmit}>
                 Proceder
               </Button>
