@@ -67,3 +67,14 @@ html, body{
   width: 100%;
   height: 100%;
 }
+
+.hr {
+  background: #424242;
+  height: 1px;
+  width: 80%;
+}
+
+.title-projects{
+  font-family: 'Roboto', sans-serif;
+  margin-left: 100px;
+}

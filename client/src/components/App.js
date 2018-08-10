@@ -8,34 +8,22 @@ import '../App.css';
 class App extends Component {
   constructor(props){
     super(props);
-
     this.state = {
-      pages: {
-        projects: false,
-        login: false
-      },
-
-      projects: {
-        tags: []
-      }
+      login: false
     }
   }
 
-  renderPage = (page) => {
-    this.setState({pages: { [page]: true } })
-  }
-
   setLogin = (bool) => {
-    this.setState({login: bool})
+    this.setState({ login: bool })
   }
 
   componentDidMount = async () => {
     this.auth = new Auth();
     try{
       const userInfo = await this.auth.loggedIn();
-      this.setState({user: userInfo, pages: { projects: true, login: false } });
+      this.setState({user: userInfo, login: true });
     } catch (err) {
-      this.setState({ pages: { login: true } }); 
+      this.setState({ login : false }); 
       console.log(err.message);
     } 
   }
@@ -43,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="full">
-        { !this.state.pages.login ? 
+        { this.state.login ? 
           <MainPage auth = {this.auth}/>
         : <div className="container full centered"><LoginForm auth={ this.auth } renderPage={this.renderPage} setLogin={this.setLogin}/></div> }
       </div>
