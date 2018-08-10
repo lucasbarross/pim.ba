@@ -17,6 +17,7 @@ function me (token) {
 };
 
 function getProject(id) {
+    console.log(id);
     return axios.get(`/projects/${id}`);
 }
 

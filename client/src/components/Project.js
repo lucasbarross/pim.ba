@@ -12,7 +12,6 @@ class Project extends Component {
   }
 
   componentDidMount = () => {
-      const formatTasks = this.props.project.tasks;
       this.setState({created: this.props.userProject !== undefined });
     }
     
