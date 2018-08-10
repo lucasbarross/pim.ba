@@ -13,17 +13,47 @@ class MainPage extends Component {
     this.state = {
         showPage:{
             projects: false
-        }
+        },
+
+        project: {
+            categories: [],
+            tasks: [],
+            links: []
+        },
+
+        userProject: {},
+
     };
   }
 
   componentDidMount = async() => {
-    this.setState({showPage: { projects: true }});
+    let project = {
+        "_id": "5b6ccce8064c8218c8f98d5f",
+        "categories": [],
+        "links": [],
+        "name": "Projeto Top",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien massa, sollicitudin aliquet nibh eget, euismod ultrices felis. Sed molestie mattis quam nec sodales. Quisque laoreet urna quis eros tristique tristique ut in dui. Pellentesque sit amet posuere felis, vel sodales nisi.",
+        "type": 1,
+        "tasks": [
+            {
+                "text": "bbbb",
+                "_id": "5b6ccce8064c8218c8f98d5d"
+            },
+            {
+                "text": "aaaa",
+                "_id": "5b6ccce8064c8218c8f98d5e"
+            }
+        ],
+        "author": "5b6cc7c3e3e9d51b14ef1c8a",
+      }
+      this.openProject(project);
  }
 
-    openProject = async (e) =>{
+    openProject = async (project) =>{
         // let project = await api.getProject(e.target.dataset.id, this.props.auth);
-        this.setState({showPage: { projects: false, project: true }});
+        let call = await api.getUserProject(project._id, this.props.auth.getToken())
+        let res = call.data;
+        this.setState({ userProject: res[0] , project: project, showPage: { projects: false} });
     }
 
   render() {
@@ -31,7 +61,9 @@ class MainPage extends Component {
         <div>
             <Navbar/>
             <div className="projectsPage">
-                { this.state.showPage.projects? <ProjectsPage auth={this.props.auth} openProject={this.openProject}/> : '' }
+                { this.state.showPage.projects ? 
+                <ProjectsPage auth={this.props.auth} openProject={this.openProject}/> : 
+                <ShowProjectPage auth={this.props.auth} project={this.state.project} userProject={this.state.userProject}/> }
             </div>
         </div>
     );

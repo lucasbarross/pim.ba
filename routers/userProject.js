@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.get('/userProjects', controller.getUserProjects);
 
-router.get('/projects/:_idProject/userProjects', controller.getProjects);
+router.get('/projects/:_idProject/userProjects/all', controller.getProjects);
 
-router.get('/userProjects/:_idUserProject', controller.getUserProject);
+router.get('/projects/:_idProject/userProjects/user', controller.getUserProject);
 
 router.post('/userProjects', controller.createUserProject);
 

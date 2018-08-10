@@ -20,8 +20,8 @@ function getProject(id) {
     return axios.get(`/projects/${id}`);
 }
 
-function getUserProject(token) {
-    return axios.get(`/userProjects`, {
+function getUserProject(id, token) {
+    return axios.get(`/projects/${id}/userProjects/user`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
