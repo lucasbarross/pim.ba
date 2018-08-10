@@ -31,6 +31,7 @@ module.exports = {
 
     getUserProject: async (req, res) => {
         try {
+            console.log(req.params)
             const params = {
                 _idProject: mongoose.Types.ObjectId(req.params._idProject),
                 _idUser: req.authData.user._id,

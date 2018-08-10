@@ -26,7 +26,7 @@ class MainPage extends Component {
 
   render() {
     let projects = this.state.projects.map((project) => {
-      return <Project key={project._id} project={project}/>
+      return <Project key={project._id} openProject={this.props.openProject} project={project}/>
     })
 
     return (

@@ -50,15 +50,13 @@ class MainPage extends Component {
  }
 
     openProject = async (e) =>{
-        let project = await api.getProject(e.target.dataset.id, this.props.auth);
-        let call = await api.getUserProject(project._id, this.props.auth.getToken())
+        let id = e.target.dataset.project;
+        console.log(e.target.dataset.project)
+        let project = await api.getProject(id);
+        let call = await api.getUserProject(id, this.props.auth.getToken())
         let res = call.data;
-        if(res[0]) {
-            project.tasks = project.tasks.map(t => ({ ...t, done: res[0].doneTasks.find(dt => dt._id === t._id) })); 
-        } else {
-            project.tasks = project.tasks.map(t => ({ ...t, done: false})); 
-        }
-        this.setState({ userProject: res[0] , project: project, showPage: { projects: false} });
+        console.log("WHHHHHHHHHHAT")
+        this.setState({userProject: res[0], project: project.data, showPage: { projects: false} });
     }
 
   render() {
