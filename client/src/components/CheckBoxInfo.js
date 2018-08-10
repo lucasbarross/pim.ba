@@ -18,7 +18,7 @@ class CheckboxInfo extends Component {
     return (
         <div>
                   <Form.Field id="checkboxes">
-                    <input onChange={this.props.handleFormChange} name={"checkboxes." + this.props.id + "." + "title"} placeholder='Titulo da Checkbox' />
+                    <input onChange={this.props.handleCheckboxChange} data-id={this.props.id} name="title" placeholder='Titulo da Checkbox' />
                   </Form.Field>
         </div>
     );

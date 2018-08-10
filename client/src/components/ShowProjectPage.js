@@ -36,6 +36,7 @@ class ShowProjectPage extends Component {
     render() {
     let tasks = [];
     let formatTasks = [];
+    console.log(this.props.project.tasks);
     if (this.props.project.tasks) {
         if(this.props.userProject) {
             console.log(this.props.userProject)
@@ -47,12 +48,17 @@ class ShowProjectPage extends Component {
     }
     let projectName = this.props.project.name ? this.props.project.name : '';
     let projectDescription = this.props.project.description ? this.props.project.description: '';
+    let links= this.props.project.links ? this.props.project.links: '';
+
     return (
         <div className="container column full">
             <p className= 'title-projects'>
                 {projectName.toUpperCase()}
             </p>
             <p className="description-project">{projectDescription}</p>
+            <p id="link"> 
+            <a href = {links}> {links} </a> 
+            </p>
         </div>
     );
   }
