@@ -60,11 +60,7 @@ class MainPage extends Component {
   render() {
     return (
         <div>
-<<<<<<< HEAD
-            <Navbar auth = {new AuthService()}/>
-=======
             <Navbar auth = {this.props.auth}/>
->>>>>>> 4ebf2a50a603873f626a2391ca052efadf0131ef
             <div className="projectsPage">
                 { this.state.showPage.projects ? 
                 <ProjectsPage auth={this.props.auth} openProject={this.openProject}/> : 
