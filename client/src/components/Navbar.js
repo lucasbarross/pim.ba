@@ -1,17 +1,28 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import { Input, Menu, Modal, Button, Header, Icon, Form } from 'semantic-ui-react'
 import CheckboxInfo from './CheckBoxInfo'
 import Chips, { Chip } from 'react-chips';
 
+=======
+import { Input, Menu } from 'semantic-ui-react'
+import Auth from '../util/auth.js';
+>>>>>>> aca502ed118d2b2b61fa7cd96784aa5a857bd05b
 
 export default class MenuExampleSecondary extends Component {
   state = { activeItem: 'home', checkboxes: []}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+<<<<<<< HEAD
   addCheckboxItem = (e) => {
     this.setState({checkboxes:[...this.state.checkboxes, <CheckboxInfo key={this.state.checkboxes.length+1}/>]})
   }
+=======
+  render() {
+    const { activeItem } = this.state
+    let auth = new Auth();
+>>>>>>> aca502ed118d2b2b61fa7cd96784aa5a857bd05b
 
   render() {
     const { activeItem, checkboxes } = this.state
@@ -71,7 +82,7 @@ export default class MenuExampleSecondary extends Component {
           <Menu.Item id="button"
             name='logout'
             active={activeItem === 'logout'}
-            onClick={this.handleItemClick}
+            onClick={auth.logout}
           />
         </Menu.Menu>
       </Menu>
