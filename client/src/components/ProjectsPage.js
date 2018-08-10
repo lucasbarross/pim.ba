@@ -32,6 +32,7 @@ class MainPage extends Component {
     return (
         <div className="container column full">
             <h2 className="title-explore">Explorar</h2>
+            <div className="hr"/>
           <div className="container wrap row">
             {projects}
           </div>

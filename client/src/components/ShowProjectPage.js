@@ -39,11 +39,11 @@ class ShowProjectPage extends Component {
     if (this.props.project.tasks) {
         if(this.props.userProject) {
             console.log(this.props.userProject)
-            formatTasks = this.props.project.tasks.map(t => ({ text: t.text, description: t.description, done: this.props.userProject.doneTasks.find(dt => dt == t._id) !== undefined }) ); 
+            formatTasks = this.props.project.tasks.map(t => ({ text: t.text, done: this.props.userProject.doneTasks.find(dt => dt == t._id) !== undefined }) ); 
         } else {
-            formatTasks = this.props.project.tasks.map(t => ({ ...t, done: false})); 
+            formatTasks = this.props.project.tasks.map(t => ({ text: t.text, done: false})); 
         }
-        tasks = formatTasks.map(task => <p> <div><Checkbox onChange = {(e) => this.check(task, e)} style = {{fontSize: '30px', padding: '10px'}} label = {task.text} defaultChecked = {task.done} /> </div> {task.description} </p>);
+        tasks = formatTasks.map(task => <p><Checkbox onChange = {(e) => this.check(task, e)} style = {{fontSize: '30px', padding: '10px'}} label = {task.text} defaultChecked = {task.done} /></p>);
     }
     let projectName = this.props.project.name ? this.props.project.name : '';
     let projectDescription = this.props.project.description ? this.props.project.description: '';
@@ -52,7 +52,7 @@ class ShowProjectPage extends Component {
             <p className= 'title-projects'>
                 {projectName.toUpperCase()}
             </p>
-            <p className="description">{projectDescription}</p>
+            <p className="description-project">{projectDescription}</p>
         </div>
     );
   }
