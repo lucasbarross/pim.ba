@@ -29,7 +29,7 @@ class MainPage extends Component {
   render() {
     return (
         <div>
-            <Navbar/>
+            <Navbar auth = {this.props.auth}/>
             <div className="projectsPage">
                 { this.state.showPage.projects? <ProjectsPage auth={this.props.auth} openProject={this.openProject}/> : '' }
             </div>
