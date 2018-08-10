@@ -57,8 +57,8 @@ function getAllUserProjects(token, idProject) {
     return axios.get(`/projects/${idProject}/userProjects/`);
 }
 
-function updateTasks(token , idUserProject) {
-    return axios.put(`/userProjects/${idUserProject}/tasks`, {
+function updateTasks(token , idUserProject, data) {
+    return axios.put(`/userProjects/${idUserProject}/tasks`, data ,{
         headers: {
             Authorization: `Bearer ${token}`
         }

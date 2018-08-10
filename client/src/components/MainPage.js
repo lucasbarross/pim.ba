@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import Navbar from './Navbar';
-import Project from './Project.js';
+import ShowProjectPage from './ShowProjectPage.js';
 import * as api from '../util/api.js';
 import AuthService from '../util/auth';
 import ProjectsPage from './ProjectsPage.js';
