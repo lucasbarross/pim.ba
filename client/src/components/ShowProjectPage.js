@@ -36,6 +36,7 @@ class ShowProjectPage extends Component {
     render() {
     let tasks = [];
     let formatTasks = [];
+    console.log(this.props.project.tasks);
     if (this.props.project.tasks) {
         if(this.props.userProject) {
             console.log(this.props.userProject)
@@ -43,6 +44,7 @@ class ShowProjectPage extends Component {
         } else {
             formatTasks = this.props.project.tasks.map(t => ({ ...t, done: false})); 
         }
+        console.log(formatTasks);
         tasks = formatTasks.map(task => <p> <div><Checkbox onChange = {(e) => this.check(task, e)} style = {{fontSize: '30px', padding: '10px'}} label = {task.text} defaultChecked = {task.done} /> </div> {task.description} </p>);
     }
     let projectName = this.props.project.name ? this.props.project.name : '';
@@ -53,6 +55,7 @@ class ShowProjectPage extends Component {
                 {projectName.toUpperCase()}
             </p>
             <p className="description">{projectDescription}</p>
+            {tasks}
         </div>
     );
   }

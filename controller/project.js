@@ -24,6 +24,7 @@ module.exports = {
 
     getProject: async (req, res) => {
         try {
+            console.log(req.params)
             const foundProject = await Project.findById(req.params._idProject);
             return res.json(foundProject);
         } catch (err) {
@@ -74,6 +75,8 @@ module.exports = {
 
     createProject: async (req, res) => {
         try {
+            console.log(req.body);
+
             const data = {
                 name: req.body.name,
                 description: req.body.description,

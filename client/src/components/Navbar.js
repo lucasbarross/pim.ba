@@ -5,32 +5,35 @@ import Chips, { Chip } from 'react-chips';
 import * as api from '../util/api.js'
 
 export default class MenuExampleSecondary extends Component {
-  state = { activeItem: 'home', checkboxes: [],  chips: [], openModal: false }
+  state = { activeItem: 'home', checkboxes: [], checkboxesValues: [],  chips: [], openModal: false }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleSubmit = async (e) => {
     this.setState({ openModal: false })
-
-    let checkboxes = [];
-    Object.keys(this.state.checkboxes).forEach((key) => { 
-      checkboxes.push(this.state.checkboxes[key].title); 
-    });
-
+    console.log("checkboxes values", this.state.checkboxesValues)
     let categories = this.state.chips.map((chip) => this.state[chip]);
-    await api.createProject(this.props.auth.getToken(), { name: this.state.name, description: this.state.description, type:1, links: this.state.links, categories: categories, tasks: checkboxes})
+    await api.createProject(this.props.auth.getToken(), { name: this.state.name, description: this.state.description, type:1, links: this.state.links, categories: categories, tasks: this.state.checkboxesValues})
   }
   openModal = (e) => {
     console.log("oi")
     this.setState({ openModal: true });
   }
-
+  
   closeModal = (e) => {
     this.setState({openModal: false});
   }
-
-  handleFormChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+  
+  handleFormChange = async(e) => {
+    await this.setState({[e.target.name]: e.target.value});
+  }
+  
+  handleCheckboxChange = async(e) => {
+    let checkboxesValues = this.state.checkboxesValues;
+    console.log("checkboxes values", checkboxesValues)
+    checkboxesValues[e.target.dataset.id] = e.target.value;
+    console.log("checkboxes values", checkboxesValues)
+    await this.setState({checkboxesValues: checkboxesValues});
   }
 
   async componentDidMount() {
@@ -48,7 +51,7 @@ export default class MenuExampleSecondary extends Component {
   }
 
   addCheckboxItem = (e) => {
-    this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo handleFormChange={this.handleFormChange} id={this.state.checkboxes.length+1} key={this.state.checkboxes.length + 1} />] })
+    this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo handleCheckboxChange={this.handleCheckboxChange} id={this.state.checkboxes.length} key={this.state.checkboxes.length + 1} />] })
   }
   
   render() {
