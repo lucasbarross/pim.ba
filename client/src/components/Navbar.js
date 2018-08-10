@@ -10,22 +10,21 @@ export default class MenuExampleSecondary extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu secondary>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-        <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Menu position='right'>
-          <Menu.Item>
+      <Menu secondary id="menu">
+        <Menu.Item 
+        active={activeItem === 'home'} 
+        onClick={this.handleItemClick}>
+        <img id="logo" src="https://i.imgur.com/ysaO2wd.png"/>
+        </Menu.Item>
+      <Menu.Menu  id="bar" position = 'right'>
+      <Menu.Item  id="bar">
             <Input icon='search' placeholder='Search...' />
           </Menu.Item>
+      </Menu.Menu>  
+
+        
+        <Menu.Menu position='right'>
+          
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}
