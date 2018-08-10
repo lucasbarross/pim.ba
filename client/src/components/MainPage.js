@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import Navbar from './Navbar';
-import { Project } from './Project';
+import Project from './Project.js';
 import * as api from '../util/api.js';
 import AuthService from '../util/auth';
 
@@ -15,12 +15,12 @@ class MainPage extends Component {
     };
   }
 
-  openProject(project) {
+  /*openProject(project) {
     api.getUserProject(this.props.project._id, this.props.auth.getToken())
       .then(userProject => {
         this.setState({ userProject, project });
       });
-  }
+  }*/
 
   render() {
     return (

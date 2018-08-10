@@ -32,4 +32,4 @@ class Project extends Component {
   }
 }
 
-export default LoginForm;
+export default Project;
