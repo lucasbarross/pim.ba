@@ -10,6 +10,8 @@ module.exports = {
             if (err) {
               return res.status(500).send(err.message);
             }
+            
+            console.log(req.body)
 
             try {
               const token = await jwt.sign({ user }, "pimba");

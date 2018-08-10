@@ -25,6 +25,10 @@ class App extends Component {
     this.setState({pages: { [page]: true } })
   }
 
+  setLogin = (bool) => {
+    this.setState({login: bool})
+  }
+
   componentDidMount = async () => {
     this.auth = new Auth();
     try{
@@ -33,13 +37,20 @@ class App extends Component {
     } catch (err) {
       this.setState({ pages: { login: false } }); 
       console.log(err.message);
-    }
+    } 
   }
 
   render() {
     return (
       <div className="container full centered">
-        { this.state.pages.login ? <Navbar/> : <LoginForm auth={ this.auth } renderPage={this.renderPage}/> }
+        { this.state.pages.login ? 
+          <Navbar/> 
+          
+        
+        
+        
+        : <LoginForm auth={ this.auth } renderPage={this.renderPage} setLogin={this.setLogin}/> }
+        
       </div>
     );
   }

@@ -17,6 +17,7 @@ const userRoutes = require('./routers/user');
 const categoryRoutes = require('./routers/category');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(passport.initialize());
 app.use(passport.session());

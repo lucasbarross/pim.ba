@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 
 class LoginForm extends Component {
   constructor(props){
@@ -8,11 +8,14 @@ class LoginForm extends Component {
   }
   
   handleForm = (e) => {
-    this.setState({[e.target.name]: [e.target.value]});
+    this.setState({[e.target.name]: e.target.value});
   }
 
   login = async (e) => {
-    this.props.auth.login({username: this.state.user, password: this.state.pass}).then(() => this.props.render("projects"));  
+    this.props.auth.login({username: this.state.user, password: this.state.pass}).then(() => { 
+      this.props.renderPage("projects");
+      this.props.setLogin(true)
+    }).catch((err) => console.log(err.message));  
   }
 
   render() {
