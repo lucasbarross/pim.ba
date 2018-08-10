@@ -7,7 +7,11 @@ function getProjects(tags) {
 };
 
 function me (token) {
-    return axios.get("/me");
+    return axios.get("/me", {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    });
 };
 
 export {

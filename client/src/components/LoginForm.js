@@ -14,7 +14,7 @@ class LoginForm extends Component {
   login = async (e) => {
     this.props.auth.login({username: this.state.user, password: this.state.pass}).then(() => { 
       this.props.renderPage("projects");
-      this.props.setLogin(true)
+      this.props.setLogin(true);
     }).catch((err) => console.log(err.message));  
   }
 
@@ -24,7 +24,7 @@ class LoginForm extends Component {
             <Form onSubmit={this.login}>
                 <input onChange={this.handleForm} type="text" id="user" name="user" placeholder="Username" />
                 <input onChange={this.handleForm} type="password" id="pass" name="pass" placeholder="Password" />
-                <button type="submit">Login</button>
+                <Button type="submit">Login</Button>
             </Form>
         </div>
     );
