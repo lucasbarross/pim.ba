@@ -7,7 +7,7 @@ module.exports = {
     getUserProjects: async (req, res) => {
         try {
             const params = {
-                _idUser: mongoose.Types.ObjectId(req.loggedUser._id),
+                _idUser: mongoose.Types.ObjectId(req.authData.user._id),
             }
             const foundProjects = await UserProject.find(params);
             return res.json(foundProjects);

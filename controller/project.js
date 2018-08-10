@@ -6,9 +6,15 @@ module.exports = {
 
     getProjects: async (req, res) => {
         try {
-            const params = {
-                categories: { $all: req.query.tags },
-            };
+            let params = {}
+            if(req.query.tags) {
+                params = {
+                    categories: { $all: req.query.tags },
+                };
+            }
+
+            console.log(req.query.tags)
+            console.log(params)
             const foundProjects = await Project.find(params);
             return res.json(foundProjects);
         } catch (err) {

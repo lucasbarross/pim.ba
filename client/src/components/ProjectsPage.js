@@ -16,41 +16,25 @@ class MainPage extends Component {
   }
 
   componentDidMount = async() => {
-    // let projects = await api.getProjects([]);
-    // let userProjects = await api.getUserProjects([]);
-    //this.setState({userProjects: userProjects, projects: projects});
-    let project = {
-      "_id": "5b6ccce8064c8218c8f98d5f",
-      "categories": [],
-      "links": [],
-      "name": "Projeto Top",
-      "description": "123",
-      "type": 1,
-      "tasks": [
-          {
-              "text": "bbbb",
-              "_id": "5b6ccce8064c8218c8f98d5d"
-          },
-          {
-              "text": "aaaa",
-              "_id": "5b6ccce8064c8218c8f98d5e"
-          }
-      ],
-      "author": "5b6cc7c3e3e9d51b14ef1c8a",
-    }
-    this.openProject(project)
-}
-  openProject(project) {
-    api.getUserProject(project._id, this.props.auth.getToken())
-      .then(userProject => {
-        this.setState({ userProject, project });
-      });
+    console.log("q")
+    let projects = await api.getProjects([]);
+    let userProjects = await api.getUserProjects(this.props.auth.getToken());
+    console.log(projects.data)
+    console.log(userProjects.data)
+    this.setState({userProjects: userProjects.data, projects: projects.data});
   }
 
   render() {
+    let projects = this.state.projects.map((project) => {
+      return <Project key={project._id} project={project}/>
+    })
+
     return (
         <div className="container column full">
-            <h2 className="title-projects">Explorar</h2>
+            <h2 className="title-explore">Explorar</h2>
+          <div className="container row">
+            {projects}
+          </div>
         </div>
     );
   }

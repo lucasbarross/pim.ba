@@ -9,20 +9,38 @@ export default class MenuExampleSecondary extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleSubmit = async (e) => {
+    let checkboxes = [];
+    Object.keys(this.state.checkboxes).forEach((key) => { 
+      checkboxes.push(this.state.checkboxes[key].title); 
+    });
+
+    let categories = this.state.chips.map((chip) => this.state[chip])
+    await api.createProject(this.props.auth.getToken(), { name: this.state.name, description: this.state.description, type:1, links: this.state.links, categories: categories, tasks: checkboxes})
+  }
+
+  handleFormChange = (e) => {
+    this.setState({[e.target.name]: e.target.value});
+  }
 
   async componentDidMount() {
     let categories = await api.getCategories();
-    categories = categories.data.foundCategories;
-    this.setState({ chips:[categories]})
+    categories = categories.data.map((category) => { 
+      this.setState({[category.name]: category._id})
+      return category.name 
+    });
+    this.setState({categories:categories})
   }
 
   onChange = chips => {
+    console.log(chips);
     this.setState({chips});
   }
 
   addCheckboxItem = (e) => {
-    this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo key={this.state.checkboxes.length + 1} />] })
+    this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo handleFormChange={this.handleFormChange} id={this.state.checkboxes.length+1} key={this.state.checkboxes.length + 1} />] })
   }
+  
   render() {
     const { activeItem, checkboxes } = this.state
     return (
@@ -56,15 +74,15 @@ export default class MenuExampleSecondary extends Component {
                 <Form>
                   <Form.Field>
                     <label>Nome do Projeto</label>
-                    <input placeholder='Nome do Projeto' />
+                    <input name="name" placeholder='Nome do Projeto' onChange={this.handleFormChange} />
                   </Form.Field>
 
                   <Form.Field>
                     <label>Descrição do Projeto</label>
-                    <input placeholder='Descrição do Projeto' />
+                    <input onChange={this.handleFormChange} name="description" placeholder='Descrição do Projeto' />
                   </Form.Field>
 
-                  <Button secondary id="button" onClick={this.addCheckboxItem}>
+                  <Button type = "button" secondary id="button-checkbox" onClick={this.addCheckboxItem}>
                     Adicionar Checkbox
                   </Button>
 
@@ -72,14 +90,14 @@ export default class MenuExampleSecondary extends Component {
 
                   <Form.Field>
                     <label>Links Úteis</label>
-                    <input placeholder='Links Úteis' />
+                    <input name="links" onChange={this.handleFormChange} placeholder='Links Úteis' />
                   </Form.Field>
 
                     <label>Tags</label>
                     <Chips
                       value={this.state.chips}
                       onChange={this.onChange}
-                      suggestions={[]}
+                      suggestions={this.state.categories}
                     />
                 </Form>
               </Modal.Description>
@@ -87,7 +105,7 @@ export default class MenuExampleSecondary extends Component {
 
             <Modal.Actions>
 
-              <Button primary id="button">
+              <Button secondary id="button-proceed" onClick={this.handleSubmit}>
                 Proceder
               </Button>
             </Modal.Actions>
