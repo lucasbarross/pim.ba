@@ -10,6 +10,7 @@ export default class MenuExampleSecondary extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleSubmit = async (e) => {
+<<<<<<< HEAD
     let checkboxes = [];
     Object.keys(this.state.checkboxes).forEach((key) => { 
       checkboxes.push(this.state.checkboxes[key].title); 
@@ -17,6 +18,9 @@ export default class MenuExampleSecondary extends Component {
 
     let categories = this.state.chips.map((chip) => this.state[chip])
     await api.createProject(this.props.auth.getToken(), { name: this.state.name, description: this.state.description, type:1, links: this.state.links, categories: categories, tasks: checkboxes})
+=======
+   await api.createProject(this.props.auth.getToken())
+>>>>>>> a24dac1a98c17e8ddbaa1928b8c529dfcd5fc804
   }
 
   handleFormChange = (e) => {
@@ -38,7 +42,11 @@ export default class MenuExampleSecondary extends Component {
   }
 
   addCheckboxItem = (e) => {
+<<<<<<< HEAD
     this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo handleFormChange={this.handleFormChange} id={this.state.checkboxes.length+1} key={this.state.checkboxes.length + 1} />] })
+=======
+    this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo id={this.state.checkboxes.length+1} key={this.state.checkboxes.length + 1} />] })
+>>>>>>> a24dac1a98c17e8ddbaa1928b8c529dfcd5fc804
   }
   
   render() {
@@ -79,7 +87,11 @@ export default class MenuExampleSecondary extends Component {
 
                   <Form.Field>
                     <label>Descrição do Projeto</label>
+<<<<<<< HEAD
                     <input onChange={this.handleFormChange} name="description" placeholder='Descrição do Projeto' />
+=======
+                    <input name="description" placeholder='Descrição do Projeto' />
+>>>>>>> a24dac1a98c17e8ddbaa1928b8c529dfcd5fc804
                   </Form.Field>
 
                   <Button type = "button" secondary id="button-checkbox" onClick={this.addCheckboxItem}>
