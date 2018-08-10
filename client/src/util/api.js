@@ -20,7 +20,7 @@ function getProject(id) {
     return axios.get(`/projects/${id}`);
 }
 
-function getUserProject(token) {
+function getUserProjects(token) {
     return axios.get(`/userProjects`, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -51,9 +51,9 @@ function submitUserProject(token, idUserProject, data) {
         }
     });
 
-}
+}''
 
-function getAllUserProjects(token, idProject) {
+function getDoneUserProjects(token, idProject) {
     return axios.get(`/projects/${idProject}/userProjects/`);
 }
 
@@ -75,7 +75,7 @@ export {
     createProject,
     createUserProject,
     submitUserProject,
-    getAllUserProjects,
+    getDoneUserProjects,
     updateTasks,
 }
 
