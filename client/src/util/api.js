@@ -20,8 +20,13 @@ function getProject(id) {
     return axios.get(`/projects/${id}`);
 }
 
+<<<<<<< HEAD
 function getUserProjects(token) {
     return axios.get(`/userProjects`, {
+=======
+function getUserProject(id, token) {
+    return axios.get(`/projects/${id}/userProjects/user`, {
+>>>>>>> 3f3a9862dd171a352f0d63cc9f93f3a83e642954
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -57,8 +62,12 @@ function getDoneUserProjects(token, idProject) {
     return axios.get(`/projects/${idProject}/userProjects/`);
 }
 
-function updateTasks(token , idUserProject) {
-    return axios.put(`/userProjects/${idUserProject}/tasks`, {
+function getCategories() {
+    return axios.get(`/categories`);
+}
+
+function updateTasks(token , idUserProject, data) {
+    return axios.put(`/userProjects/${idUserProject}/tasks`, data ,{
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -77,5 +86,6 @@ export {
     submitUserProject,
     getDoneUserProjects,
     updateTasks,
+    getCategories,
 }
 

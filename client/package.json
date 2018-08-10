@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.4.2",
+    "react-chips": "^0.6.4",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
     "semantic-ui-css": "^2.3.3",

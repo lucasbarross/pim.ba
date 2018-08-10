@@ -19,13 +19,33 @@ class MainPage extends Component {
     // let projects = await api.getProjects([]);
     // let userProjects = await api.getUserProjects([]);
     //this.setState({userProjects: userProjects, projects: projects});
+    let project = {
+      "_id": "5b6ccce8064c8218c8f98d5f",
+      "categories": [],
+      "links": [],
+      "name": "Projeto Top",
+      "description": "123",
+      "type": 1,
+      "tasks": [
+          {
+              "text": "bbbb",
+              "_id": "5b6ccce8064c8218c8f98d5d"
+          },
+          {
+              "text": "aaaa",
+              "_id": "5b6ccce8064c8218c8f98d5e"
+          }
+      ],
+      "author": "5b6cc7c3e3e9d51b14ef1c8a",
+    }
+    this.openProject(project)
 }
-  /*openProject(project) {
-    api.getUserProject(this.props.project._id, this.props.auth.getToken())
+  openProject(project) {
+    api.getUserProject(project._id, this.props.auth.getToken())
       .then(userProject => {
         this.setState({ userProject, project });
       });
-  }*/
+  }
 
   render() {
     return (

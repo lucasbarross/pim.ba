@@ -31,7 +31,11 @@ module.exports = {
 
     getUserProject: async (req, res) => {
         try {
-            const foundProject = await UserProject.findById(req.params._idUserProject);
+            const params = {
+                _idProject: mongoose.Types.ObjectId(req.params._idProject),
+                _idUser: req.authData.user._id,
+            }
+            const foundProject = await UserProject.find(params);
             return res.json(foundProject);
         } catch (err) {
             console.log(err);
