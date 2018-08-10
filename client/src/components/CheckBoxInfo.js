@@ -17,14 +17,12 @@ class CheckboxInfo extends Component {
   render() {
     return (
         <div>
-            <Form>
                   <Form.Field id="checkboxes">
                     <input placeholder='Titulo da Checkbox' />
                   </Form.Field>
                   <Form.Field id="checkboxes">
                     <input placeholder='Descrição da Checkbox' />
                   </Form.Field>
-                </Form>
         </div>
     );
   }

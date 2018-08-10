@@ -57,6 +57,10 @@ function getAllUserProjects(token, idProject) {
     return axios.get(`/projects/${idProject}/userProjects/`);
 }
 
+function getCategories() {
+    return axios.get(`/categories`);
+}
+
 function updateTasks(token , idUserProject, data) {
     return axios.put(`/userProjects/${idUserProject}/tasks`, data ,{
         headers: {
@@ -77,5 +81,6 @@ export {
     submitUserProject,
     getAllUserProjects,
     updateTasks,
+    getCategories,
 }
 
