@@ -105,6 +105,21 @@ html, body{
 }
 
 .title-projects{
+  margin-left: 100px;
+  font-size: 60px;
+  margin-bottom: 0px;
+}
+
+.description {
+  margin-left: 100px;
+  font-size: 20px;
+}
+
+body {
   font-family: 'Roboto', sans-serif;
+}
+
+.checkbox {
   margin-left: 100px;
 }
+
