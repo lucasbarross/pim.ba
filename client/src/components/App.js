@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <div className="full">
         { !this.state.pages.login ? 
-          <MainPage/>
+          <MainPage auth = {this.auth}/>
         : <div className="container full centered"><LoginForm auth={ this.auth } renderPage={this.renderPage} setLogin={this.setLogin}/></div> }
       </div>
     );
