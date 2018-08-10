@@ -19,11 +19,15 @@ class LoginForm extends Component {
 
   render() {
     return (
+
         <div className="container column centered">
+        <img id="logo-login" src="https://i.imgur.com/ysaO2wd.png" />
             <Form onSubmit={this.login}>
                 <input onChange={this.handleForm} type="text" id="user" name="user" placeholder="Username" />
                 <input onChange={this.handleForm} type="password" id="pass" name="pass" placeholder="Password" />
-                <Button type="submit">Login</Button>
+                <div id="button-holder">
+                  <Button type="submit" id="button-login">Login</Button>
+                </div>
             </Form>
         </div>
     );
