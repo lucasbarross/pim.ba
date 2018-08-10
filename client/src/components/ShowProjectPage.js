@@ -18,17 +18,31 @@ class ShowProjectPage extends Component {
     }
 
 
-    async check(task) {
+    async check(task, e) {
         if(!this.props.userProject) {
             await this.props.createUserProject();
         }
-        await api.updateTasks(this.props.auth.getToken(), this.props.userProject._id, [ ...this.props.tasks.map(t => t._id), task._id]);
+        let newArray;
+        if (task.done) {
+            newArray = this.props.userProject.doneTasks.filter(dt => dt !== task._id);
+        } else {
+            newArray = [ ...this.props.userProject.doneTasks, task._id];
+        }
+        console.log(newArray);
+        await api.updateTasks(this.props.auth.getToken(), this.props.userProject._id, { doneTasks: newArray });
     }
 
     render() {
     let tasks = [];
+    let formatTasks = [];
     if (this.props.project.tasks) {
-        tasks = this.props.project.tasks = this.props.project.tasks.map(task => <p> <div><Checkbox onChange = {(e) => this.check(task)} style = {{fontSize: '30px', padding: '10px'}} label = {task.text} defaultChecked = {task.done} /> </div> {task.description} </p>);
+        if(this.props.userProject) {
+            console.log(this.props.userProject)
+            formatTasks = this.props.project.tasks.map(t => ({ text: t.text, description: t.description, done: this.props.userProject.doneTasks.find(dt => dt == t._id) !== undefined }) ); 
+        } else {
+            formatTasks = this.props.project.tasks.map(t => ({ ...t, done: false})); 
+        }
+        tasks = formatTasks.map(task => <p> <div><Checkbox onChange = {(e) => this.check(task, e)} style = {{fontSize: '30px', padding: '10px'}} label = {task.text} defaultChecked = {task.done} /> </div> {task.description} </p>);
     }
 
     let projectName = this.props.project.name ? this.props.project.name : '';
