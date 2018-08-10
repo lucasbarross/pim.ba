@@ -58,6 +58,10 @@ class MainPage extends Component {
         this.setState({userProject: res[0], project: project.data, showPage: { projects: false} });
     }
 
+    createUserProject = () => {
+        this.setState({ userProject: api.createUserProject(this.props.auth.getToken(), this.state.project._id)});
+    }
+
   render() {
     return (
         <div>

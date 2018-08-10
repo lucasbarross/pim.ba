@@ -10,7 +10,7 @@ router.get('/projects/:_idProject/userProjects/all', controller.getProjects);
 
 router.get('/projects/:_idProject/userProjects/user', controller.getUserProject);
 
-router.post('/userProjects', controller.createUserProject);
+router.post('/projects/:_idProject/userProjects', controller.createUserProject);
 
 router.put('/userProjects/:_idUserProject/submit', controller.submitUserProject);
 

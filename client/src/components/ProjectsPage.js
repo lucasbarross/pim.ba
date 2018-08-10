@@ -15,7 +15,7 @@ class MainPage extends Component {
     };
   }
 
-  componentDidMount = async() => {
+  componentWillMount = async() => {
     console.log("q")
     let projects = await api.getProjects([]);
     let userProjects = await api.getUserProjects(this.props.auth.getToken());
