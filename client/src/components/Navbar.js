@@ -9,6 +9,13 @@ export default class MenuExampleSecondary extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleSubmit = async (e) => {
+   await api.createProject(this.props.auth.getToken())
+  }
+
+  handleFormChange = (e) => {
+    this.setState({[e.target.name]: e.target.value});
+  }
 
   async componentDidMount() {
     let categories = await api.getCategories();
@@ -21,8 +28,9 @@ export default class MenuExampleSecondary extends Component {
   }
 
   addCheckboxItem = (e) => {
-    this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo key={this.state.checkboxes.length + 1} />] })
+    this.setState({ checkboxes: [...this.state.checkboxes, <CheckboxInfo id={this.state.checkboxes.length+1} key={this.state.checkboxes.length + 1} />] })
   }
+  
   render() {
     const { activeItem, checkboxes } = this.state
     return (
@@ -56,15 +64,15 @@ export default class MenuExampleSecondary extends Component {
                 <Form>
                   <Form.Field>
                     <label>Nome do Projeto</label>
-                    <input placeholder='Nome do Projeto' />
+                    <input name="name" placeholder='Nome do Projeto' onChange={this.handleFormChange} />
                   </Form.Field>
 
                   <Form.Field>
                     <label>Descrição do Projeto</label>
-                    <input placeholder='Descrição do Projeto' />
+                    <input name="description" placeholder='Descrição do Projeto' />
                   </Form.Field>
 
-                  <Button secondary id="button" onClick={this.addCheckboxItem}>
+                  <Button type = "button" secondary id="button-checkbox" onClick={this.addCheckboxItem}>
                     Adicionar Checkbox
                   </Button>
 
@@ -87,7 +95,7 @@ export default class MenuExampleSecondary extends Component {
 
             <Modal.Actions>
 
-              <Button primary id="button">
+              <Button secondary id="button-proceed" onClick={this.handleSubmit}>
                 Proceder
               </Button>
             </Modal.Actions>
