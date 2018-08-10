@@ -13,7 +13,6 @@ class LoginForm extends Component {
 
   login = async (e) => {
     this.props.auth.login({username: this.state.user, password: this.state.pass}).then(() => { 
-      this.props.renderPage("projects");
       this.props.setLogin(true);
     }).catch((err) => console.log(err.message));  
   }

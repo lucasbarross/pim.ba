@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Menu } from 'semantic-ui-react'
+import Auth from '../util/auth.js';
 
 export default class MenuExampleSecondary extends Component {
   state = { activeItem: 'home' }
@@ -8,6 +9,7 @@ export default class MenuExampleSecondary extends Component {
 
   render() {
     const { activeItem } = this.state
+    let auth = new Auth();
 
     return (
       <Menu secondary id="menu">
@@ -28,7 +30,7 @@ export default class MenuExampleSecondary extends Component {
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}
-            onClick={this.handleItemClick}
+            onClick={auth.logout}
           />
         </Menu.Menu>
       </Menu>
